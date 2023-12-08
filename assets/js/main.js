@@ -8,7 +8,7 @@ let offset = 0;
 // função recebe um objeto pokemon e retorna o html do <li>
 function convertPokemonToLi(pokemon) {
   return `
-        <li class="pokemon ${pokemon.type}">
+        <li class="pokemon ${pokemon.type}" id="${pokemon.number}">
             <span class="number">#${pokemon.number}</span>
             <span class="name">${pokemon.name}</span>
 
@@ -26,13 +26,29 @@ function convertPokemonToLi(pokemon) {
     `;
 }
 
+function handlePokemonClick(pokemon) {
+  console.log(JSON.stringify(pokemon));
+  window.location.href = `./details.html?pokemon=${JSON.stringify(pokemon)}`;
+}
+
 // função faz a requisição de um array de 10 pokemons
 function loadPokemonItens(offset, limit) {
   pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
     // para cada objeto, pega o li
     const newHtml = pokemons.map(convertPokemonToLi).join("");
+
     // adiciona o li no html da página
     pokemonList.innerHTML += newHtml;
+
+    // adiciona o evento de click para cada elemento <li>
+    pokemons.forEach((pokemon) => {
+      console.log(pokemon);
+      const pokemonElement = document.getElementById(pokemon.number);
+      pokemonElement.addEventListener("click", () => {
+        // abre o modal
+        handlePokemonClick(pokemon);
+      });
+    });
   });
 }
 
