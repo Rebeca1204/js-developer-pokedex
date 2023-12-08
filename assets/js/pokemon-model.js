@@ -1,4 +1,4 @@
-
+// classe modelo de pokemon
 class Pokemon {
     number;
     name;
