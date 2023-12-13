@@ -27,7 +27,6 @@ function convertPokemonToLi(pokemon) {
 }
 
 function handlePokemonClick(pokemon) {
-  console.log(JSON.stringify(pokemon));
   window.location.href = `./details.html?pokemon=${JSON.stringify(pokemon)}`;
 }
 
@@ -42,7 +41,6 @@ function loadPokemonItens(offset, limit) {
 
     // adiciona o evento de click para cada elemento <li>
     pokemons.forEach((pokemon) => {
-      console.log(pokemon);
       const pokemonElement = document.getElementById(pokemon.number);
       pokemonElement.addEventListener("click", () => {
         // abre o modal
