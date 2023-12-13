@@ -19,7 +19,7 @@ function convertPokemonToDetail(pokemon) {
             <div class="detail">
                 <ul class="types">
                     ${pokemon.types
-                      .map((type) => `<li class="type ${type}">${type}</li>`)
+                      .map((type) => `<li class="type">${type}</li>`)
                       .join("")}
                 </ul>
 
